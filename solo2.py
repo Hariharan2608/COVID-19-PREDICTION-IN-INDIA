@@ -1,5 +1,5 @@
 import streamlit as st
-import plotly_express as px
+#import plotly_express as px
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
