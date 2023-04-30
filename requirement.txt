@@ -1,5 +1,5 @@
 streamlit==1.2.0
-plotly_express
+plotly-express
 pandas
 fbprophet
 Pillow
