@@ -1,3 +1,4 @@
+## Importing the required Libraries
 import streamlit as st
 #import plotly_express as px
 import pandas as pd
@@ -8,12 +9,13 @@ from PIL import Image
 import base64
 
 
-# configuration
+# configuration for the streankut app
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
-
+#Title of the application
 st.title("Covid 19 Case Prediction")
 
+#Loading the images 
 img1 = Image.open("co.jpg")
 img2 = Image.open("co1.jpg")
 
@@ -21,7 +23,7 @@ img2 = Image.open("co1.jpg")
 main_bg = "co3.jpg"
 main_bg_ext = "jpg"
 
-
+#To add background image in streamlit
 st.write(
     f"""
     <style>
@@ -34,10 +36,12 @@ st.write(
     unsafe_allow_html=True
 )
 
+#Showcasing the sidebars in app.
 home = st.sidebar.radio(
     label="Select",
     options=['Home', 'Covid 19 Prediction'])
-    
+
+#if the user is in the home page
 if home == 'Home':
     
     st.write("This app helps you to predict the daily Cases and Recovered of covid 19 in India")
@@ -72,7 +76,7 @@ if home == 'Home':
 
 
 elif home == 'Covid 19 Prediction':
-    # Add a sidebar
+    # Add a extra sidebar
     st.sidebar.subheader("Settings")
 
     # Setup file upload
@@ -82,6 +86,7 @@ elif home == 'Covid 19 Prediction':
     
     global df
 
+    #showcasing the uploaded files(dataset)
     if uploaded_file is not None:
         print(uploaded_file)
         print("hello")
@@ -93,6 +98,8 @@ elif home == 'Covid 19 Prediction':
             df = pd.read_excel(uploaded_file)
        
     st.header("Data")
+
+    #for downloading the dataset
     st.write("If you don't have a dataset please click here https://api.covid19india.org/csv/latest/case_time_series.csv . It helps you to view the current cases.Then choose the downloaded file from the downloads.")
     try:
         st.write("This is where you can see your dataset.")
@@ -100,11 +107,13 @@ elif home == 'Covid 19 Prediction':
     except Exception as e:
         print(e)
         st.write("Please upload file to the application.") 
-        
+
+    #For prediction page
     predict_select = st.sidebar.selectbox(
         label="Select the Prediction type",
         options=[' ', 'Cases', 'Recovered'])
 
+    #predicting the number of cases
     if predict_select == "Cases":
         eda = ['Graphs', 'Trend', 'Predicted']
         confirm = st.sidebar.selectbox("select",eda) 
@@ -141,7 +150,7 @@ elif home == 'Covid 19 Prediction':
             print(e)  
 
         
-                
+        #To view the insights from the graphs    
         if confirm == "Graphs":
             try:
                 st.write("The graph helps to unterstand our prediction. The black dot epresents the actual value.The blue line represents the predicted value and the shade over the blue line represents the lowe and upper limit of the predicted value.")
@@ -167,7 +176,8 @@ elif home == 'Covid 19 Prediction':
                 st.write(final)
             except Exception as e:
                 print(e)
-                
+
+    #to predict the recovered cases
     elif predict_select == "Recovered":
         eda = ['Graphs', 'Trend', 'Predicted']
         confirm = st.sidebar.selectbox("select",eda)
@@ -205,7 +215,7 @@ elif home == 'Covid 19 Prediction':
             print(e)
            
         
-                
+        #to view the insights in the graph for recovered cases 
         if confirm == "Graphs":
             try:
                 st.write("The graph helps to unterstand our prediction. The black dot epresents the actual value.The blue line represents the predicted value and the shade over the blue line represents the lowe and upper limit of the predicted value.")
