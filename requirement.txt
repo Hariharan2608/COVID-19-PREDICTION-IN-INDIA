@@ -4,4 +4,4 @@ plotly-express
 pandas
 fbprophet
 Pillow
-.
+
