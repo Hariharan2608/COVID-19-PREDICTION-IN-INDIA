@@ -5,7 +5,7 @@ Using Facebook prophet library in Python.
 
 UI by using python’s Streamlit package.
 
-COVID 19 CASE PREDICTION IN PYTHON
+
 
 ## Objectives
 We aim to create a covid 19 case (India) prediction application in 
